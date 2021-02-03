@@ -1,0 +1,37 @@
+{
+    // Python設定
+    // 環境設定
+    "python.envFile": "${workspaceFolder}/.env_python.sh",
+    "python.pythonPath": "venv/bin/python",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true,
+        "**/venv/**": true,
+    },
+    // フォーマット設定
+    "autoDocstring.docstringFormat": "google",
+    "python.formatting.provider": "autopep8",
+    // a == None を a is None置換
+    "python.formatting.autopep8Args": [
+        "--aggressive",
+        "--aggressive",
+    ],
+    // リント設定
+    "python.linting.lintOnSave": true,
+    "python.linting.enabled": true,
+    // デフォルトt設定を無効
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    // 関数が２０行を超えるようなら警告
+    "python.linting.flake8Args": [
+        "--max-complexity=20",
+    ],
+    // pytest設定
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "tests/ut/"
+    ],
+    "git.ignoreLimitWarning": true,
+}
