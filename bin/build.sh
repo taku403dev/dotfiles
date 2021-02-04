@@ -17,7 +17,7 @@ dotfiles_dir="${1:-dotfiles-master}"
 
 cd "$HOME"
 
-# dotfilesディレクトリが存在する場合
+# dotfilesディレクトリの存在チェック
 if [[  -d "${home}/${dotfiles_dir}" ] || [ -d "${HOME}/dotfiles" ]]; then
     while :
     do
@@ -63,7 +63,7 @@ else
     exit 1
 fi 
 
-# フォルダをユーザーディレクトリ下に移動
+# dotfilesフォルダをユーザーディレクトリ下に移動
 mv "${dotfiles_dir}" "${HOME}"
 
 # dotfilesディレクトリに移動しシンボリックリンクを貼る
@@ -82,7 +82,7 @@ do
         || "$f" = '.CFUserTextEncoding' \
     ]] && continue
 
-    # リンク対象が存在する場合
+    # リンク対象の存在チェック
     if [[ -f "${HOME}/${f}" || -d "${HOME}/${f}" ]]; then
        echo "failed [ $(date "+%Y-%m-%dT%H:%M:%S") ] Cannot link because the ${HOME}/${f} exists." >> '/tmp/init.log'
        continue
