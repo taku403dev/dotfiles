@@ -1,9 +1,12 @@
 #!/bin/bash
 # OSごとに異なるデプロイを実行
 
-source "${DOTPATH}/lib/util.sh"
-source "${DOTPATH}/setup/osx/setup_manager.sh"
+. "${DOTPATH}/lib/util.sh"
+. "${DOTPATH}/os/osx.sh"
 
-if is_osx; then
-    os::osx::setup_manager::deploy
+# macの場合
+if lib::util::is_osx; then
+    echo "Build the environment for osx."
+    os::osx:deploy || exit 1
+    echo "Succeeded in building osx environment."
 fi

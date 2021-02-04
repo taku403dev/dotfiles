@@ -20,22 +20,27 @@ function lib::util::is_arm64(){
     return 1
 }
 
-# mac osxか確認
 function lib::util::is_osx() {
-    get_os_type == 'osx' 1>/dev/null && return 0
+# mac osxか確認
+    if [[ $(lib::util::get_os_type) = 'osx' ]]; then
+        return 0
+    fi
     return 1
 }
 
-# linuxか確認
 function lib::util::is_linux() {
-    get_os_type == 'linux' 1>/dev/null && return 0
+    # linuxか確認
+    if [[ $(lib::util::get_os_type) = 'linux' ]]; then
+        return 0
+    fi
     return 1
 }
 
 function lib::util::is_bsd() {
     # bsdか確認
-
-    get_os_type == 'bsd' 1>/dev/null && return 0
+    if [[ $(lib::util::get_os_type) = 'bsd' ]]; then
+        return 0
+    fi
     return 1
 }
 
@@ -102,7 +107,6 @@ function lib::util::err() {
 #   $1 エラーメッセージ
 # Returns:
 #   0
-
     echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $1" >&2
     return 0
 }
