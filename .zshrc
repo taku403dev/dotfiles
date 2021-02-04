@@ -12,7 +12,6 @@ source ${DOTPATH}/lib/util.sh
 #bindkey -e
 ## vimキーバインドを使う。
 bindkey -v
-fish
 # ディレクトリ移動
 ## ディレクトリ名だけでcdする。
 setopt auto_cd
@@ -419,5 +418,3 @@ update_title() {
 if [ -n "$DISPLAY" ]; then
     preexec_functions=($preexec_functions update_title)
 fi
-
-eval (direnv hook zsh)
