@@ -95,7 +95,6 @@ function lib::util::get_linux_distribution() {
 
 function lib::util::die() {
     # 文字列を出力し終了する
-
     echo "$1"
     exit 0;
 }
