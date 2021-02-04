@@ -63,10 +63,10 @@ else
     exit 1
 fi 
 
-# dotfilesフォルダをユーザーディレクトリ下に移動
+# dotfilesをホームディレクトリに移動
 mv "${dotfiles_dir}" "${HOME}"
 
-# dotfilesディレクトリに移動しシンボリックリンクを貼る
+# リンクを貼るため移動
 cnt_dir=$(pwd)
 cd "${HOME}/${dotfiles_dir}"
 
