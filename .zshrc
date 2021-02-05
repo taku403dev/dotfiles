@@ -1,5 +1,8 @@
-export DOTPATH=${HOME}/dotfiles
-export PATH=${DOTPATH}/bin:$PATH
+export DOTPATH="${HOME}/dotfiles"
+# インストールするパッケージ
+export PACKAGES="${DOTPATH}/packages.txt"
+# binスクリプト
+export PATH="${DOTPATH}/bin:$PATH"
 
 source ${DOTPATH}/lib/util.sh
 

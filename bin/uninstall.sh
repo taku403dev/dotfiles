@@ -1,6 +1,6 @@
 #!/bin/bash
 # Description:
-#   pakages.csvで管理されているパッケージをアンインストール
+#   pakages.txtで管理されているパッケージを指定してアンインストール
 #   引数なしの場合は一括削除
 # 
 # Args:
