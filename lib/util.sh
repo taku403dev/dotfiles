@@ -1,3 +1,5 @@
+# FileInfo: shell script
+#   Desc: 共通で利用する関数の定義ファイル
 
 function lib::util::get_os_type(){
 # Summary: 動作中のOSを出力する
@@ -40,9 +42,7 @@ function lib::util::is_osx() {
 # Returns:
 #   is_osx: 0
 #   not_osx: 1
-    if [[ $(lib::util::get_os_type) = 'osx' ]]; then
-        return 0
-    fi
+    [[ $(lib::util::get_os_type) = 'osx' ]] && return 0
     return 1
 }
 
@@ -52,9 +52,7 @@ function lib::util::is_linux() {
 # Returns:
 #   is_linux: 0
 #   not_linux: 1
-    if [[ $(lib::util::get_os_type) = 'linux' ]]; then
-        return 0
-    fi
+    [[ $(lib::util::get_os_type) = 'linux' ]] && return 0
     return 1
 }
 
@@ -108,8 +106,8 @@ function lib::util::is_empty(){
 # Returns:
 #   is empty: 0
 #   not empty: 1
-    [ -z "$1" ] && return 0
-    [ "$1" == "" ] && return 0
+    [[ -z "$1" ]] && return 0
+    [[ "$1" == "" ]] && return 0
     return 1
 }
 
@@ -150,7 +148,7 @@ function lib::util::has() {
 # Returns:
 #   exists: 0
 #   notExist: 1
-    which $1 >/dev/null 2>&1 && return 0
+    [[ $(which "$1" >/dev/null 2>&1) ]] && return 0
     return 1
 }
 
@@ -163,7 +161,7 @@ function lib::util::has_path() {
 # Returns:
 #   exists: 0
 #   notExist 1
-    cho $PATH | grep '/opt/homebrew/bin:'  && return 0
+    [[ -n $(echo $PATH | grep '/opt/homebrew/bin') ]] && return 0
     return 1
 }
 
