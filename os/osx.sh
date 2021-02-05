@@ -7,6 +7,7 @@
 function os::osx::prepare() {
     # パッケージマネージャー導入準備
     xcode-select --install
+
     # マシンタイプごとにインストール方法を指定
     if lib::util::is_x86_64; then
         packages::brew::setup_x86_64
@@ -14,24 +15,17 @@ function os::osx::prepare() {
     elif lib::util::is_arm64; then
         packages::brew::setup_arm64
     fi
+
+    return 0
 }
 
 function os::osx::install() {
-    # dotfilesディレクトリ直下のpackages.csvに記載されているコマンドをインストール
-    while read cmd;
-    do
-        # パッケージがインストール済みの場合
-        if lib::util::has "$cmd"; then
-            continue
-        fi
+    # dotfilesディレクトリ直下のpackages.csvで管理されているコマンドをインストール
+    pakcages_csv::brew::install_all \
+    # インストール処理に失敗した場合
+    || return 1
 
-        brew install "$cmd"
-        # インストール失敗の場合
-        if [[ $? -ne 0 ]]; then
-            lib::util::err "${cmd} failed to install."
-        fi
-
-    done < <(cat "${DOTPATH}/packages.csv")
+    return 0
 }
 
 function os::osx:deploy() {

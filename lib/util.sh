@@ -95,7 +95,6 @@ function lib::util::get_linux_distribution() {
 
 function lib::util::die() {
     # 文字列を出力し終了する
-
     echo "$1"
     exit 0;
 }
@@ -116,4 +115,11 @@ function lib::util::has() {
 
     which $1 >/dev/null 2>&1 && return 0
     return 1
+}
+
+function lib::util::usage() {
+# 関数の使用法
+# Args:
+#   $1: description
+    echo "Usage: ${0} ${1}" 1>&2
 }

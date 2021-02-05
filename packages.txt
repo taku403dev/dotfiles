@@ -7,5 +7,5 @@ pyenv
 jenv
 bashdb
 mas
-iterm2
 shellcheck
+iterm2
