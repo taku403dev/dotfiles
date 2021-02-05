@@ -9,3 +9,9 @@ bashdb
 mas
 shellcheck
 iterm2
+w3m
+tcl-tk
+shellspec
+sqlite
+lua
+perl
