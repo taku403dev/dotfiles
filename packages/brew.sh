@@ -4,7 +4,8 @@
 . ${DOTPATH}/lib/util.sh
 
 # インストールするパッケージが格納する変数
-declare pakcages_csv="${DOTPATH}/packages.csv"
+# declare packages_csv="${DOTPATH}/packages.csv"
+declare packages_csv="${DOTPATH}/packages_cask.csv"
 
 function packages::brew::setup_arm64() {
 # Homebrewをインストールする(M1 Mac)
@@ -13,7 +14,7 @@ function packages::brew::setup_arm64() {
     declare cnt_dir=$(pwd)
 
     # インストール済みの場合
-    lib::util::has brew; && return 0
+    lib::util::has brew && return 0
 
     # 実行ファイルが存在しない場合
     if [[ ! -f /opt/homebrew/bin/brew ]]; then
@@ -47,34 +48,33 @@ function packages::brew::setup_x86_64() {
 
 function packages::brew::install_all() {
 # dotfilesディレクトリ直下のpackages.csvで管理されているコマンドをインストールする
-
-    while read cmd;
+    while read -r cmd;
     do
         # インストール済みの場合
         lib::util::has "$cmd" && continue
 
         brew install "$cmd" \
-        # インストールに失敗した場合
         || lib::util::err "${cmd} could not be installed."
 
-    done < <($packages_csv)
+    done < <(cat $packages_csv)
 
     return 0
 }
 
-function pakcages::brew::uninstall_all() {
+function packages::brew::uninstall_all() {
 # dotfilesディレクトリ直下のpackages.csvで管理されているコマンドをアンインストールする
-    while read cmd;
+
+    while read -r cmd;
     do
-        # packages.csvで管理されていない場合
-        ! lib::util::has "$cmd" && continue
+        # パッケージが存在しない場合
+        ! lib::util::has "$cmd" && [[ $(brew list --cask) != "$cmd" ]] && continue
 
         # アンインストールに失敗した場合
         if ! $(brew uninstall "$cmd" >/dev/null 2>&1); then
             lib::util::err "${cmd} could not be installed."
         fi
 
-    done < <($packages_csv)
+    done < <(cat "$packages_csv")
 
     return 0
 }
