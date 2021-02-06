@@ -1,6 +1,7 @@
 #!/bin/bash
-# FileInfo: dotfilesを利用するための起動スクリプト
-# dotfilesをレポジトリからダウンロードしシンボリックを貼る
+# FileInfo: dotfilesディレクトリ下の設定ファイルを配置する
+# 
+#   Desc: URLからダウンロードしシンボリックを貼る
 
 # ダウンロード先のurl
 readonly tarball='https://github.com/taku403dev/dotfiles/archive/master.tar.gz'
@@ -81,7 +82,8 @@ do
         || "$f" = '.Trash' \
         || "$f" = '.vscode' \
         || "$f" = '.vscode-insiders' \
-        || "$f" = '.CFUserTextEncoding' \
+        || "$f" = '.env' \
+        || "$f" = '.shellspec' \
     ]] && continue
 
     # リンク対象の存在チェック

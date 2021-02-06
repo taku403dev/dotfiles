@@ -6,7 +6,13 @@ Describe 'util.sh'
   #   The output should equal 'example error'
   #   The status should eq 0
   # End
-  
+
+   It 'get_os_type'
+    When call Lib_Util_output 'test massage'
+    The output should equal 'test massage'
+    The status should eq 0
+  End
+
   It 'get_os_type'
     When call Lib_Util_get_os_type
     The output should equal 'osx'
