@@ -1,5 +1,5 @@
 #!/bin/bash
-# ホームディレクトリにdotfilesディレクトリ下に存在する.ファイルのシンボリックリンクを貼る
+# FileInfo: ホームディレクトリにdotfilesディレクトリ下に存在する.ファイルのシンボリックリンクを貼る
 
 # 引数チェック
 if [[ "$?" -ne 0 ]]; then
@@ -17,8 +17,10 @@ if [[ ! -d "${HOME}/${dotfiles_dir}" ]]; then
 fi
 
 # リンクを貼るため移動
-cnt_dir=$(pwd)
+declare current_dir=$(pwd)
 cd "${HOME}/${dotfiles_dir}"
+
+# ディレクトリに移動できない場合
 if [[ $? -ne 0 ]]; then
     echo "Could not move to ${HOME}/${dotfiles_dir}."
     exit 1
@@ -45,5 +47,5 @@ do
     ln -snfv "${HOME}/${dotfiles_dir}/${f}" "${HOME}/${f}"
 done
 
-cd "$cnt_dir"
+cd "$current_dir"
 exec $SHELL -l

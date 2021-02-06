@@ -9,10 +9,10 @@ function os::osx::prepare() {
     xcode-select --install
 
     # マシンタイプごとにインストール方法を指定
-    if lib::util::is_x86_64; then
+    if Lib_Util_is_x86_64; then
         packages::brew::setup_x86_64
 
-    elif lib::util::is_arm64; then
+    elif Lib_Util_is_arm64; then
         packages::brew::setup_arm64
     fi
 

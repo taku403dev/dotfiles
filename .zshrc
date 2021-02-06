@@ -421,4 +421,3 @@ update_title() {
 if [ -n "$DISPLAY" ]; then
     preexec_functions=($preexec_functions update_title)
 fi
-export PATH=/opt/homebrew/bin:$PATH

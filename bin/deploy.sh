@@ -5,7 +5,7 @@
 . "${DOTPATH}/os/osx.sh"
 
 # macの場合
-if lib::util::is_osx; then
+if Lib_Util_is_osx; then
     echo "Build the environment for osx."
     os::osx:deploy || exit 1
     echo "Succeeded in building osx environment."
