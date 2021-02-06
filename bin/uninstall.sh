@@ -13,12 +13,12 @@
 
 # 引数チェック
 if [[ "$#" -gt 1 ]]; then
-    lib::util::err 'Argument specification is 1 or less'
+    Lib_Util_err 'Argument specification is 1 or less'
     exit 1
 fi
 
 # OSごとに処理を変更
-if lib::util::is_osx; then
+if Lib_Util_is_osx; then
     # 引数指定がない場合一括削除
     echo "aaa"
     if [[ "$#" -eq 0 ]]; then
@@ -28,11 +28,10 @@ if lib::util::is_osx; then
     return 1
 else
     # パッケージが未インストールの場合
-    if lib::util::has "$1"; then
-        lib::util::err "${1} is not installed."
+    if Lib_Util_has "$1"; then
+        Lib_Util_err "${1} is not installed."
         exit 1
     fi
 
-    brew uninstall "${1}" && exit 1
-    exit 1
+    brew uninstall "${1}" && exit 0
 fi

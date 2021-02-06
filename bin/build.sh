@@ -1,5 +1,5 @@
 #!/bin/bash
-# dotfilesを利用するための起動スクリプト
+# FileInfo: dotfilesを利用するための起動スクリプト
 # dotfilesをレポジトリからダウンロードしシンボリックを貼る
 
 # ダウンロード先のurl
@@ -21,6 +21,7 @@ cd "$HOME"
 if [[  -d "${home}/${dotfiles_dir}" ] || [ -d "${HOME}/dotfiles" ]]; then
     while :
     do
+        # dotfilesディレクトリが存在する場合は削除するか確認する
         echo "cannot download because the ${dotfiles_dir} exists. \n remove a ${dotfiles_dir}?  yes/no ) " 
         read answer
         case $answer in
@@ -28,10 +29,8 @@ if [[  -d "${home}/${dotfiles_dir}" ] || [ -d "${HOME}/dotfiles" ]]; then
                 rm -rf "${HOME}/${dotfiles_dir}"
                 echo "Removed a ${HOME}/${dotfiles_dir}";
                 break;;
-
             n | no | No )
                 exit 1;;
-
             * ) echo 'Please enter yes or no.';;
         esac
     done
@@ -40,6 +39,10 @@ fi
 # gitが存在する場合
 if [[ $(which git) ]]; then
 
+    # macの場合はxcode-select --installを実行する
+    if [[ $(uname -s) = 'Darwin' ]]; then
+        xcode-select --install
+    fi
     dotfiles_dir='dotfiles'
     git clone "$giturl"
 
@@ -47,7 +50,6 @@ if [[ $(which git) ]]; then
     if [[ $? -ne 0 ]]; then
         if [[ $(uname -s) = 'Darwin' ]]; then
             # git を利用するためxcode-selectを導入
-            xcode-select --install || exit 1
         fi
         exit 1
     fi

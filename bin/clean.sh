@@ -15,6 +15,6 @@ while read answer; do
 done
 
 # OSごとにパッケージマネージャーが異なるので処理を分ける
-if lib::util::is_osx; then
+if Lib_Util_is_osx; then
     uninstall_homebrew_all
 fi

@@ -10,25 +10,25 @@ function lib::common::fetch_repository() {
     #   成功: 0 失敗: 1
 
     # gitが利用できる場合はdotfilesをクローン
-    if lib::util::has 'git'; then
+    if Lib_Util_has 'git'; then
         $(git clone "$1" "$HOME")
 
     # gitが利用不可の場合はwgetかcurlで取得
-    elif lib::util::has 'curl' || lib::util::has 'wget'; then
+    elif Lib_Util_has 'curl' || Lib_Util_has 'wget'; then
 
         local tarball='https://github.com/b4b4r07/dotfiles/archive/master.tar.gz'
 
         # curlかwgetにtarballを渡す
-        if lib::util::has 'curl'; then
+        if Lib_Util_has 'curl'; then
             curl -L "$tarball"
 
-        elif lib::util::has 'wget'; then
+        elif Lib_Util_has 'wget'; then
             wget -O "$tarball"
 
         fi | tar zxv
 
     else
-        lib::util::die lib::util::err 'dotfilesを取得するにはコマンドcurlかwgetが必要です'
+        Lib_Util_die Lib_Util_err 'dotfilesを取得するにはコマンドcurlかwgetが必要です'
         return 1
     fi
 

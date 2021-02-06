@@ -10,12 +10,12 @@
 
 # 引数チェック
 if [[ "$#" -ne 0 ]]; then
-    lib::util::err 'Argument specification is less'
+    Lib_Util_err 'Argument specification is less'
     exit 1
 fi
 
 # OSごとに処理を変更
-if lib::util::is_osx; then
+if Lib_Util_is_osx; then
     packages::brew::install_all && exit 0
     exit 1
 fi
