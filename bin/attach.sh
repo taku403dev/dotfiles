@@ -35,7 +35,8 @@ do
         || "$f" = '.Trash' \
         || "$f" = '.vscode' \
         || "$f" = '.vscode-insiders' \
-        || "$f" = '.CFUserTextEncoding' \
+        || "$f" = '.env' \
+        || "$f" = '.shellspec' \
     ]] && continue
 
     # リンク対象が存在するかチェック

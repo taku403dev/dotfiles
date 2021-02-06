@@ -1,13 +1,22 @@
 # FileInfo: shell script
 #   Desc: 共通で利用する関数の定義ファイル
 
+function Lib_Util_output() {
+# Summary: メッセージを出力する
+# 
+# Args:
+#   $1: メッセージ
+    echo "$1"
+}
+
 function Lib_Util_err() {
 # Summary: エラーメッセージを標準エラ-に出力する
 # 
 # Args:
 #   $1 エラーメッセージ
 # 
-    echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $1" >&2
+    # echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $1" >&2
+    echo "$1" 1>&2
 }
 
 function Lib_Util_get_os_type(){
@@ -80,7 +89,6 @@ function Lib_Util_is_bash() {
 # Returns:
 #   is_bash: 0
 #   not_bash: 1
-    ehco "$BASH_VERSION"
     [[ -n "$BASH_VERSION" ]] && return 0
     return 1
 }
