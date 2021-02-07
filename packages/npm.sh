@@ -2,14 +2,17 @@
 
 . "${DOTPATH}/lib/util.sh"
 
-function packages::npm::setup() {
+# npmで管理するグローバルプレフィックスのパス
+readonly declare npm_global_path="${HOME}/.npm-global"
+
+function Packages_Npm_build_path() {
 # Summary: npmのセットアップをする
 # 
     # npmが存在する場合
     if Lib_Util_has 'npm'; then
-        # パーミッションの関係で環境によってはグローバルでインストールできないことがある
+        # パーミッションの関係で環境によってはグローバルでインストールできないことがあるため
         # デフォルトのインストール先を変更する
-        npm config set prefix "${HOME}/.npm-global"
-        export PATH="$HOME/.npm-global/bin:$PATH"
+        npm config set prefix "$npm_global_path"
+        export PATH="${npm_global_path}/bin:$PATH"
     fi
 }
