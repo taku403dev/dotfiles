@@ -4,7 +4,11 @@ export PACKAGES="${DOTPATH}/packages.txt"
 # binスクリプト
 export PATH="${DOTPATH}/bin:$PATH"
 
-source ${DOTPATH}/lib/util.sh
+. "${DOTPATH}/lib/util.sh"
+. "${DOTPATH}/packages/npm.sh"
+
+# npmのセットアップ
+packages::npm::setup
 
 # -*- sh -*-
 #キーレイアウトの設定
