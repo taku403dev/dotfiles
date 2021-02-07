@@ -1,10 +1,21 @@
+# Pathの設定
 export DOTPATH="${HOME}/dotfiles"
 # インストールするパッケージ
 export PACKAGES="${DOTPATH}/packages.txt"
-# binスクリプト
+# shellの実行ファイルスクリプト
 export PATH="${DOTPATH}/bin:$PATH"
 
-source ${DOTPATH}/lib/util.sh
+# ライブラリのインポート
+. "${DOTPATH}/lib/util.sh"
+. "${DOTPATH}/packages/npm.sh"
+. "${DOTPATH}/packages/brew.sh"
+
+# ビルド設定
+# npm
+Packages_Npm_build_path
+# brew
+packages::brew::build_path
+
 
 # -*- sh -*-
 #キーレイアウトの設定

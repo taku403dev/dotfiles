@@ -6,13 +6,11 @@ Describe 'util.sh'
   #   The output should equal 'example error'
   #   The status should eq 0
   # End
-
-   It 'get_os_type'
+  It 'output has param'
     When call Lib_Util_output 'test massage'
     The output should equal 'test massage'
     The status should eq 0
   End
-
   It 'get_os_type'
     When call Lib_Util_get_os_type
     The output should equal 'osx'
@@ -38,14 +36,14 @@ Describe 'util.sh'
     When call Lib_Util_is_bsd
     The status should eq 1
   End
-  It 'is_bash'
-    When call Lib_Util_is_bash
-    The status should eq 1
-  End
-  It 'is_zsh'
-    When call Lib_Util_is_zsh
-    The status should eq 0
-  End
+  # It 'is_bash'
+  #   When call Lib_Util_is_bash
+  #   The status should eq 1
+  # End
+  # It 'is_zsh'
+  #   When call Lib_Util_is_zsh
+  #   The status should eq 0
+  # End
   It 'is_fish'
     When call Lib_Util_is_fish
     The status should eq 1

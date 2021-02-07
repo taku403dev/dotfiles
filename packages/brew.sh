@@ -3,16 +3,27 @@
 # ライブラリ
 . ${DOTPATH}/lib/util.sh
 
+readonly declare arm64_homebrew_path='/opt/homebrew'
+
+function packages::brew::build_path() {
+# Summary: 環境変数のHomebrewのPATHを通す
+# Desc: マシンタイプ別に参照先のPATHを変更する
+
+    # マシンタイプ別に参照先を変更
+    if Lib_Util_is_arm64; then
+        export PATH="${arm64_homebrew_path}/bin:${PATH}"
+    fi
+}
 
 function packages::brew::setup_arm64() {
-# Summary: Homebrewをインストールする(M1 chip version)
+# Summary: Homebrewのインストールと利用準備をする(M1 chip version)
 # 
 # Returns:
 #   0: インストール処理の成功
 #   1: Homebrewがインストール済み
 
     # 移動するので現在パスの位置を記憶
-    local declare current_dir=$(pwd)
+    local readonly declare current_dir=$(pwd)
 
     # Homebrewがインストール済みの場合
     if Lib_Util_has brew; then
@@ -21,22 +32,13 @@ function packages::brew::setup_arm64() {
     fi
 
     # brewの実行ファイルが存在しない場合
-    if [[ ! -f /opt/homebrew/bin/brew ]]; then
+    if [[ ! -f "${arm64_homebrew_path}/bin/brew" ]]; then
         cd /opt
         sudo mkdir homebrew
-        sudo chown $USER /opt/homebrew
+        sudo chown $USER "${arm64_homebrew_path}"
         curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
         cd "$current_dir"
     fi
-
-    # インストール後、環境変数にパスが通っていない場合
-    if ! Lib_Util_has brew ; then
-        echo 'export PATH=/opt/homebrew/bin:$PATH' >> "${HOME}/.zshrc"
-        source "${HOME}/.zshrc"
-    fi
-    
-    # 更新
-    brew update
     return 0
 }
 
@@ -54,7 +56,6 @@ function packages::brew::setup_x86_64() {
     fi
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || return 1
-
     return 0
 }
 

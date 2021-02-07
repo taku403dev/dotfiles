@@ -34,4 +34,9 @@
         "tests/ut/"
     ],
     "git.ignoreLimitWarning": true,
+    // シェルスクリプト設定
+    "[shellscript]": {
+        "editor.tabSize": 2,
+        "files.eol": "\n"
+    },
 }
