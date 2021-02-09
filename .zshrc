@@ -9,12 +9,15 @@ export PATH="${DOTPATH}/bin:$PATH"
 . "${DOTPATH}/lib/util.sh"
 . "${DOTPATH}/packages/npm.sh"
 . "${DOTPATH}/packages/brew.sh"
+. "${DOTPATH}/packages/direnv.sh"
 
-# ビルド設定
+# パッケージ利用の準備
 # npm
 Packages_Npm_build_path
 # brew
 packages::brew::build_path
+# direnv
+pakcages::direnv::setup
 
 
 # -*- sh -*-
