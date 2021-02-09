@@ -15,7 +15,7 @@ has wakeonlan || echo 'wakeonlanコマンドが存在しないため実行でき
 
 
 case "$1" in
-    "thinkpad_x230") poweron_thnikpadx230;;
-    *) echo "PCが存在しません"; exit 1;;
+  "thinkpad_x230") poweron_thnikpadx230;;
+  *) echo "PCが存在しません"; exit 1;;
 esac
 
