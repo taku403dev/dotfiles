@@ -11,13 +11,13 @@ export PATH="${DOTPATH}/bin:$PATH"
 . "${DOTPATH}/packages/brew.sh"
 . "${DOTPATH}/packages/direnv.sh"
 
-# パッケージ利用の準備
+# パッケージ設定
 # npm
-Packages_Npm_build_path
+Packages_Npm_configure
 # brew
 packages::brew::build_path
 # direnv
-pakcages::direnv::setup
+pakcages::direnv::configure
 
 
 # -*- sh -*-

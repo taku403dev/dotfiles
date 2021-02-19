@@ -15,3 +15,5 @@ shellspec
 sqlite
 lua
 perl
+graphviz
+plantuml

@@ -1,4 +1,4 @@
-# FileInfo: mac osxの開発環境構築を管理する
+# FileInfo: mac osxの開発環境構築の管理ファイル
 
 . "${DOTPATH}/packages/brew.sh"
 . "${DOTPATH}/lib/util.sh"

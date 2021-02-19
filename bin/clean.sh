@@ -1,5 +1,5 @@
 #!/bin/bash
-# インストール済みのコマンドを一括削除
+# インストール済みパッケージを一括削除
 
 source ${DOTPATH}/lib/resources/brew_operator.sh
 source ${DOTPATH}/lib/util.sh

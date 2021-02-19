@@ -12,5 +12,5 @@
 if Lib_Util_is_osx; then
   Lib_Util_output "Build the environment for osx."
   os::osx:deploy || exit 1
-  Lib_Util_output "Succeeded in building osx environment."
+  Lib_Util_output "Succefully in building osx environment."
 fi
