@@ -11,6 +11,6 @@ get_ip_thinkpad_x230() {
 }
 
 # thinkpad x230の電源をオンにする
-poweron_thnikpadx230() {
+poweron_thinkpadx230() {
   wakeonlan $THINKPADX230_MAC_ADDRESS || return 1
 }

@@ -5,9 +5,9 @@
 # npmで管理するグローバルプレフィックスのパス
 readonly declare npm_global_path="${HOME}/.npm-global"
 
-function Packages_Npm_build_path() {
-  # Summary: npm -g install時のデフォルトルートパスを変更する
-  # Detail: パーミッションの関係で環境によってはグローバルでインストールできないことがあるためホームディレクトリ下に作成する
+function Packages_Npm_configure() {
+  # Summary: npmの設定をする
+  # Desc: パーミッションの関係でデフォルトルートディレクトリではグローバルインストール時にエラーが発生する可能性があるため変更する
   
   # npmが存在する場合
   if Lib_Util_has 'npm'; then

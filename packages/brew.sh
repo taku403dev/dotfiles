@@ -7,9 +7,9 @@ readonly declare arm64_homebrew_path='/opt/homebrew'
 
 function packages::brew::build_path() {
   # Summary: 環境変数のHomebrewのPATHを通す
-  # Desc: マシンタイプ別に参照先のPATHを変更する
+  # Desc: arm64の場合は参照先のPATHを変更する
   
-  # マシンタイプ別に参照先を変更
+  # arm64の場合
   if Lib_Util_is_arm64; then
     export PATH="${arm64_homebrew_path}/bin:${PATH}"
   fi
@@ -60,7 +60,12 @@ function packages::brew::setup_x86_64() {
 }
 
 function packages::brew::install_all() {
-  # Summary: dotfilesディレクトリ直下のpackages.txtで管理されているコマンドをインストールする
+  # Summary: packages.txtで管理されているパッケージを全インストールする
+  # Desc: packages.txtはdotfilesディレクトリ直下に存在する
+  # Returns:
+  #   0: 成功
+  #   1: 失敗
+
   while read -r cmd;
   do
     # コマンドが存在、またはcaskリストに存在する場合
@@ -70,9 +75,10 @@ function packages::brew::install_all() {
     
     # インストールが失敗した場合
     brew install "$cmd" \
-    || Lib_Util_err "${cmd} はインストールできませんでした。"
+    || Lib_Util_err "${cmd} はインストールできませんでした。" && return 1
     
   done < <(cat "$PACKAGES")
+  return 1
 }
 
 function packages::brew::uninstall_all() {
@@ -99,7 +105,7 @@ function remove() {
   # Summary: Homebrewをアンインストールする(x86 amd64)
   #
   # Returns:
-  #   0: アンインストール成功
+  #   0: 成功
   #   1: brewが存在しない
   
   # インストールされていない場合
