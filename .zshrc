@@ -10,6 +10,7 @@ export PATH="${DOTPATH}/bin:$PATH"
 . "${DOTPATH}/packages/npm.sh"
 . "${DOTPATH}/packages/brew.sh"
 . "${DOTPATH}/packages/direnv.sh"
+. "${DOTPATH}/packages/tfenv.sh"
 
 # パッケージ利用の準備
 # npm
