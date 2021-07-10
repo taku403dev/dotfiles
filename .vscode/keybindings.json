@@ -1,0 +1,13 @@
+// 既定値を上書きするには、このファイル内にキー バインドを挿入します
+[
+    {
+      "key": "cmd+space",
+      "command": "editor.action.triggerSuggest",
+      "when": "editorTextFocus"
+    },
+    {
+      "key": "cmd+w",
+      "command": "workbench.action.moveEditorRightInGroup",
+      "when": "editorTextFocus"
+    }
+  ]

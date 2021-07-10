@@ -6,11 +6,12 @@ export PACKAGES="${DOTPATH}/packages.txt"
 export PATH="${DOTPATH}/bin:$PATH"
 
 # ライブラリのインポート
+. "${DOTPATH}/.env"
 . "${DOTPATH}/lib/util.sh"
 . "${DOTPATH}/packages/npm.sh"
 . "${DOTPATH}/packages/brew.sh"
 . "${DOTPATH}/packages/direnv.sh"
-. "${DOTPATH}/packages/tfenv.sh"
+# . "${DOTPATH}/packages/tfenv.sh"
 
 # パッケージ設定
 # npm
